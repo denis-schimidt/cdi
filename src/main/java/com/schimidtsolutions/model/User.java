@@ -47,4 +47,9 @@ public class User implements Serializable {
 	public Integer getId() {
 		return id;
 	}
+	@Override
+	public String toString() {
+		return String.format("User [id=%s, name=%s, idade=%s, contact=%s]", id,
+				name, idade, contact);
+	}
 }

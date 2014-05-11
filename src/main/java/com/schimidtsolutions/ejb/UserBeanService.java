@@ -10,7 +10,7 @@ import com.schimidtsolutions.model.Contact;
 import com.schimidtsolutions.model.User;
 
 @Local( UserBean.class ) 
-@Stateful 
+@Stateful
 @SessionScoped
 public class UserBeanService implements UserBean {
 	private static final AtomicInteger ID_GENERATOR = new AtomicInteger();

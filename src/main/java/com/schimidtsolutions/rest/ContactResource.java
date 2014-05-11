@@ -1,6 +1,7 @@
 package com.schimidtsolutions.rest;
 
 import javax.inject.Inject;
+import javax.interceptor.ExcludeClassInterceptors;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,10 +13,12 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.annotations.Form;
 
 import com.schimidtsolutions.ejb.UserBean;
+import com.schimidtsolutions.interceptor.annotations.Tracked;
 import com.schimidtsolutions.model.Contact;
 import com.schimidtsolutions.model.User;
 
 @Path("contact")
+@Tracked
 public class ContactResource {
 
 	@Inject
@@ -44,6 +47,7 @@ public class ContactResource {
 	@Path("this")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@ExcludeClassInterceptors
 	public Response get() {
 		return Response.ok( userService.getUser() ).build();
 	}

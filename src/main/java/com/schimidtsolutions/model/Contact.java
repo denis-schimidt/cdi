@@ -18,9 +18,6 @@ public class Contact implements Serializable {
 	@FormParam("phone")
 	private Long phone;
 	
-	@FormParam("cdi")
-	private String cdi;
-	
 	public String getEmail() {
 		return email;
 	}
@@ -38,5 +35,10 @@ public class Contact implements Serializable {
 	}
 	public void setPhone(Long phone) {
 		this.phone = phone;
+	}
+	@Override
+	public String toString() {
+		return String.format("Contact [email=%s, ddd=%s, phone=%s]",
+				email, ddd, phone);
 	}
 }
