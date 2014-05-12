@@ -6,7 +6,7 @@ import com.schimidtsolutions.util.annotations.Issn;
 public class IssnGenerator implements NumberGenerator {
 
 	@Override
-	public final String next() {
-		return "11111";
+	public String next() {
+		return Long.toString( (long) Math.random() * 99999 );
 	}
 }

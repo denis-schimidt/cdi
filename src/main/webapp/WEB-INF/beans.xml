@@ -1,18 +1,9 @@
 <?xml version="1.0"?>
 <beans xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
-	version="1.1" bean-discovery-mode="all">
+	bean-discovery-mode="all" version="1.1">
 
-	<!-- <interceptors>
-	    <class>
-			com.schimidtsolutions.interceptor.ProfillingInterceptor	        
-	    </class>
-	    <class>
-	        com.schimidtsolutions.interceptor.LoggingInterceptor
-	    </class>
-		<class>
-		    com.schimidtsolutions.interceptor.DestrutorInterceptor
-		</class>
-	</interceptors> -->
-
-</beans>    
+	<decorators>
+		<class>com.schimidtsolutions.util.FromEightToThirteenDigitsDecorator</class>
+	</decorators>
+</beans>
