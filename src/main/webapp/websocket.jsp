@@ -6,7 +6,7 @@
       <title>Web sockets</title>
       
       <script type="text/javascript">
-         var wsUri = getRootUri() + "/websocket";
+         var wsUri = getRootUri() + "/estudo-rest/websocket";
          
          function getRootUri() {
          	return "ws://" + (document.location.hostname == "" ? "localhost" : document.location.hostname) + ":" +
@@ -65,7 +65,7 @@
    <body>
       
       <h1 style="text-align: center">
-      	Hello World WebSocket Client</h1>
+      	WebSocket Client</h1>
       <br/>
       
       <div style="text-align: center;">

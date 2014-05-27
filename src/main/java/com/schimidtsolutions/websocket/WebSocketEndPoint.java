@@ -23,6 +23,6 @@ public class WebSocketEndPoint {
 	
 	@OnClose
 	public void myOnClose( final CloseReason reason ) {
-		System.out.println( "Closing a WebSocket due to " + reason.getReasonPhrase() );
+		System.out.println( "Closing a WebSocket due to " + reason!= null ? reason.getReasonPhrase() : "..." );
 	}
 }
