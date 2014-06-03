@@ -3,6 +3,10 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
 	bean-discovery-mode="all" version="1.1">
 
+    <alternatives>
+        <class>com.schimidtsolutions.model.factory.OracleProducer</class>
+    </alternatives>
+    
 	<decorators>
 		<class>com.schimidtsolutions.util.FromEightToThirteenDigitsDecorator</class>
 	</decorators>

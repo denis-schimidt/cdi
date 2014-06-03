@@ -30,7 +30,7 @@ public class WebSocketEndPointTest {
 			new WebSocketConnectionCallback() {
 
 				@Override
-				public void onConnect(WebSocketHttpExchange exchange, WebSocketChannel channel ){
+				public void onConnect( WebSocketHttpExchange exchange, WebSocketChannel channel ){
 					
 						
 				}
