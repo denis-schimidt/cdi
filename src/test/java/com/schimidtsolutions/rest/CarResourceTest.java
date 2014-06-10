@@ -1,45 +1,35 @@
 package com.schimidtsolutions.rest;
 
 import io.undertow.Undertow;
-import io.undertow.server.HttpHandler;
-import io.undertow.server.HttpServerExchange;
-import io.undertow.util.Headers;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import junit.framework.Assert;
-
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CarResourceTest {
-	private Undertow server;
+	private UndertowJaxrsServer server;
 	
 	@BeforeClass
-	private void init(){
-		server = Undertow.builder()
-				.addHttpListener(8080, "localhost")
-				.setHandler( new HttpHandler() {
-					
-					@Override
-					public void handleRequest(HttpServerExchange exchange) throws Exception {
-						exchange.getResponseHeaders().put( Headers.CONTENT_TYPE, MediaType.APPLICATION_XML );
-					}
-					
-				} ).build();
-        server.start();
+	public void init() throws Exception {
+		server = new UndertowJaxrsServer();
+		
+		server.start( Undertow.builder().addHttpListener(8080, "localhost") );
+		server.deploy(ApplicationForTest.class);
 	}
 	
 	@Test( dataProvider="add-cars")
 	public void testAddCar( String xml, int codeExpected ) {
-		Client client = new ResteasyClientBuilder().build();
-			
+		
+		Client client = ResteasyClientBuilder.newClient();
+				
 		Response response = client.target( "http://localhost:8080/estudo-rest/rest/cars/add" )
 			.request().put( Entity.xml( xml ) );
 			
@@ -51,8 +41,9 @@ public class CarResourceTest {
 	@DataProvider(name="add-cars")
 	private Object[][] createXML(){
 		return new Object[][]{
-				{ "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><car><id>4</id><description>Kadet</description></car>", Response.Status.OK.getStatusCode() },
-				{ "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><car><id>5</id><description>Polo</description></car>", Response.Status.OK.getStatusCode() }
+				{ "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><car><id>4</id><description>Kadet</description></car>", Response.Status.CREATED.getStatusCode() },
+				{ "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><car><id>5</id><description>Polo</description></car>", Response.Status.CREATED.getStatusCode() },
+				{ "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><car><id></id><description>Polo</description></car>", Response.Status.BAD_REQUEST.getStatusCode() }
 		};
 	}
 	

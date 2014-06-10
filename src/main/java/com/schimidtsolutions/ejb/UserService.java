@@ -6,7 +6,7 @@ import com.schimidtsolutions.model.Contact;
 import com.schimidtsolutions.model.User;
 
 @Local
-public interface UserBean {
+public interface UserService {
 	public Integer addUser( User user );
 	
 	public void addContact( Contact contact );

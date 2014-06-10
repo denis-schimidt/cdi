@@ -9,10 +9,10 @@ import javax.enterprise.context.SessionScoped;
 import com.schimidtsolutions.model.Contact;
 import com.schimidtsolutions.model.User;
 
-@Local( UserBean.class ) 
+@Local( UserService.class ) 
 @Stateful
 @SessionScoped
-public class UserBeanService implements UserBean {
+public class UserBeanService implements UserService {
 	private static final AtomicInteger ID_GENERATOR = new AtomicInteger();
 	private User user;
 

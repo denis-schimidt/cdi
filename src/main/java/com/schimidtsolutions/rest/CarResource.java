@@ -43,8 +43,8 @@ public class CarResource {
 
 		Car car = ParserXML.fromXML( is, Car.class );
 		
-		if( is == null || car == null || car.getId() == null ){
-			return Response.status( Response.Status.BAD_GATEWAY ).build();
+		if( is == null || car == null || car.getId().equals( 0 ) ){
+			return Response.status( Response.Status.BAD_REQUEST ).build();
 		}
 		
 		DB.put(car.getId(), car );

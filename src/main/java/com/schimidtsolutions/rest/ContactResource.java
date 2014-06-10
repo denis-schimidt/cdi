@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.Form;
 
-import com.schimidtsolutions.ejb.UserBean;
+import com.schimidtsolutions.ejb.UserService;
 import com.schimidtsolutions.interceptor.annotations.Tracked;
 import com.schimidtsolutions.model.Contact;
 import com.schimidtsolutions.model.User;
@@ -22,7 +22,7 @@ import com.schimidtsolutions.model.User;
 public class ContactResource {
 
 	@Inject
-	private UserBean userService;
+	private UserService userService;
 
 	@Path("add/user")
 	@POST

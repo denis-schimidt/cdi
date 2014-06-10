@@ -7,23 +7,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="PERSON")
-public class Person {
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Person{
 
 	@Id
-	@Column(name="PERSON_ID", nullable=false, updatable=false, unique=true)
-	@SequenceGenerator( name = "personSeq", sequenceName = "PERSON_SEQ")
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="personSeq")
+	@Column(name="PERSON_ID", nullable=false, updatable=false, insertable=true)
+	@SequenceGenerator(name = "personSeq", sequenceName = "PERSON_SEQ", initialValue=1, allocationSize=2147483647)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="personSeq")
 	private Integer id;
 	
 	@Pattern(regexp="[a-zA-Z]{5,}", message="Nome inválido!")
 	@Column(name="PERSON_NAME", nullable=false, updatable=true, insertable=true)
 	private String name;
 	
-	@Pattern(regexp="[0-130]", message="Idade inválida!")
+	@Min(value=1) @Max(value=130)
 	@Column(name="AGE", nullable=false, updatable=true, insertable=true)
 	private Short age;
 	
